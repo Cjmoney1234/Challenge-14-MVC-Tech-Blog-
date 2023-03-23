@@ -6,7 +6,6 @@ router.get('/', async (req, res) => {
   try {
     // Get all Blogs and JOIN with user data
     const blogData = await Blog.findAll({
-      attributes: ['id', 'name', 'content'],
       include: [
         {
           model: User,
@@ -31,8 +30,10 @@ router.get('/', async (req, res) => {
 
 router.get('/blog/:id', async (req, res) => {
   try {
-    const blogData = await Blog.findByPk(req.params.id, {
-      attributes: ['id', 'name', 'content'],
+    const blogData = await Blog.findOne({  where: {
+      id: req.params.id
+    },
+      attributes: ['id', 'title', 'content'],
       include: [
         {
           model: User,
@@ -59,8 +60,7 @@ router.get('/profile', withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ 
-        model: Blog,
-        attributes: ['title', 'content'] }],
+        model: Blog}],
     });
 
     const user = userData.get({ plain: true });
