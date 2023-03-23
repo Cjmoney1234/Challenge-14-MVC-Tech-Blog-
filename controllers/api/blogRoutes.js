@@ -5,7 +5,12 @@ const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    const blogData = await Blog.findAll();
+    const blogData = await Blog.findAll({
+      title: req.body.title,
+      content: req.body.content,
+      user_id: req.session.user_id
+
+    });
     res.status(200).json(blogData);
   } catch (err) {
     res.status(500).json(err);
@@ -14,7 +19,12 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const blogData = await Blog.findByPk(req.params.id);
+    const blogData = await Blog.findByPk({
+      title: req.body.title,
+      content: req.body.content,
+      user_id: req.session.user_id
+
+    });
     res.status(200).json(blogData);
   } catch (err) {
     res.status(500).json(err);
@@ -24,8 +34,9 @@ router.get('/:id', async (req, res) => {
 router.post('/', withAuth, async (req, res) => {
   try {
     const newBlog = await Blog.create({
-      ...req.body,
-      user_id: req.session.user_id,
+      title: req.body.title,
+      content: req.body.content,
+      user_id: req.session.user_id
     });
 
     res.status(200).json(newBlog);
@@ -34,13 +45,27 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+router.put('/', withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.update({
+      title: req.body.title,
+      content: req.body.content,
+    },
+    {
+    where: {id: req.params.id}
+    }
+    );
+    res.status(200).json(blogData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const blogData = await Blog.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
+      where: {id: req.params.id
+        },
     });
 
     if (!blogData) {

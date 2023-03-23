@@ -14,7 +14,7 @@
         <input class="form-input" type="text" id="blog-title" name="blog-title" />
       </div>
       <div class="form-group">
-        <label for="blog-content">content:</label>
+        <label for="blog-content">Content:</label>
         <textarea class="form-input" id="blog-content" name="blog-content"></textarea>
       </div>
       <div class="form-group">
@@ -27,18 +27,18 @@
   <div class="col-md-6 blog-list">
     <h3>Current Blogs:</h3>
 
-    {{#each blogs as |blog|}}
     <div class="row mb-2">
       <div class="col-md-8">
+        {{#each blogs as |blog|}}
         <h4>{{blog.title}}</h4>
         <p>{{blog.content}}</p>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{blog.id}}">DELETE</button>
+        <button class="btn btn-sm btn-danger" data-id="{{blog.user_id}}">DELETE</button>
       </div>
     </div>
     {{/each}}
   </div>
   {{/if}}
 </div>
-
+<script src="/js/profile.js"></script>
