@@ -1434,7 +1434,7 @@ form [type='radio'] {
     max-width: 8.33333%;
   }
   .col-md-2 {
-    flex: 0 0 16.66667%;
+    display: 0 0 16.66667%;
     max-width: 16.66667%;
   }
   .col-md-3 {

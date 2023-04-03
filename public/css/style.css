@@ -16,9 +16,31 @@ header, .blog:not(:last-child) {
   color: #065b83;
   text-decoration: underline;
 }
-
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
+body {
+  font-family: 'Shadows Into Light', cursive;
+  background-color: pink;
 }
+
+.blogDisplay h1 {
+  font-size: 8rem;
+  font-weight: bolder;
+  color: red;
+}
+
+.blogDisplay p {
+  font-size: 5rem;
+  color: white;
+}
+
+.blogDisplay-2 {
+  font-size: 5rem;
+  font-weight: bolder;
+  color: red;
+}
+
+.myBlog{
+  font-size: 1.5rem;
+}
+
+
+
